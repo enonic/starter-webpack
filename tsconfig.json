@@ -7,8 +7,5 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "strictNullChecks": true
-  },
-  "types": [
-    "types"
-  ]
+  }
 }

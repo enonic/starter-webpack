@@ -19,7 +19,7 @@ const config = {
   context: path.join(__dirname, RESOURCES_PATH),
   entry: {},
   externals: [
-    /(\/lib\/(enonic|xp|mustache|thymeleaf))?\/.+/
+    /^\/lib\/(.+|\$)$/i
   ],
   output: {
     path: path.join(__dirname, '/build/resources/main'),
@@ -31,7 +31,16 @@ const config = {
   },
   optimization: {
     minimizer: [
-      new TerserPlugin(),
+      new TerserPlugin({
+        sourceMap: false,
+        terserOptions: {
+          compress: {
+            drop_console: false,
+          },
+          keep_classnames: true,
+          keep_fnames: true,
+        }
+      }),
     ],
     splitChunks: {
       minSize: 30000,
@@ -40,7 +49,7 @@ const config = {
   mode: env.type,
   // Source maps are not usable in server scripts
   devtool: false,
-}
+};
 
 // ----------------------------------------------------------------------------
 // JavaScript loaders
