@@ -1,10 +1,12 @@
 const path = require('path');
 const glob = require('glob');
 const R = require('ramda');
+const {ProvidePlugin} = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const {
   setEntriesForPath,
   addRule,
+  addPlugin,
   prependExtensions
 } = require('./util/compose');
 const env = require('./util/env');
@@ -85,6 +87,9 @@ function addTypeScriptSupport(cfg) {
   return R.pipe(
     setEntriesForPath(entries),
     addRule(rule),
+    addPlugin(new ProvidePlugin({
+      'Object.assign': [path.join(__dirname, RESOURCES_PATH, 'polyfills'), 'assign']
+    })),
     prependExtensions(['.ts', '.json'])
   )(cfg);
 }
