@@ -51,7 +51,7 @@ task cleanNode( type: org.gradle.api.tasks.Delete ) {
 
 task clientWebpack( type: NodeTask, dependsOn: npmInstall ) {
     environment = [ 'NODE_ENV': nodeEnvironment() ]
-    args = [ '--config', 'webpack.client.config.js', '--color', '--hide-modules' ]
+    args = [ '--config', 'webpack.client.config.js', '--color' ]
     description = 'Build UI resources (js, css, etc).'
     inputs.dir 'src/main'
     outputs.dir "${buildDir}/resources/main"
@@ -61,7 +61,7 @@ task clientWebpack( type: NodeTask, dependsOn: npmInstall ) {
 task serverWebpack( type: NodeTask, dependsOn: npmInstall ) {
     environment = [ 'NODE_ENV': nodeEnvironment() ]
     // args = [ '--config', 'webpack.server.config.babel.js', '--color', '--hide-modules' ]
-    args = [ '--config', 'webpack.server.config.js', '--color', '--hide-modules' ]
+    args = [ '--config', 'webpack.server.config.js', '--color' ]
     description = 'Build server JS.'
     inputs.dir 'src/main'
     outputs.dir "${buildDir}/resources/main"
