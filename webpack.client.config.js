@@ -22,7 +22,7 @@ const config = {
   entry: {},
   output: {
     path: path.join(__dirname, '/build/resources/main/assets'),
-    filename: '[name].js',
+    filename: isProd ? '[name].[contenthash].js' : '[name].js',
   },
   resolve: {
     extensions: [],
@@ -79,7 +79,7 @@ function addBabelSupport(cfg) {
       plugins: [],
       presets: [
         [
-          '@babel/preset-env', 
+          '@babel/preset-env',
           {
             // false means polyfill not required runtime
             useBuiltIns: false
@@ -108,8 +108,8 @@ const createDefaultCssLoaders = () => ([
 
 const createCssPlugin = () => (
   new MiniCssExtractPlugin({
-    filename: './styles/bundle.css',
-    chunkFilename: '[id].css',
+    filename: isProd ? './styles/bundle.[contenthash].css' : './styles/bundle.css',
+    chunkFilename: isProd ? '[id].[contenthash].css' : '[id].css',
   })
 );
 
