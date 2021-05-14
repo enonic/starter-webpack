@@ -79,7 +79,7 @@ function addBabelSupport(cfg) {
       plugins: [],
       presets: [
         [
-          '@babel/preset-env', 
+          '@babel/preset-env',
           {
             // false means polyfill not required runtime
             useBuiltIns: false

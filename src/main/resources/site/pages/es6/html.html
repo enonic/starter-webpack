@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Test this (html.html changed?)</title>
+    </head>
+
+    <body style="font-family:sans-serif">
+        <h1 data-th-text="${didChange}">Hmmf</h1>
+        <p>Nothing updates when using <span style="font-family:monospace; background-color:#ccc; display:inline-block">--dev</span>.</p>
+        <h2>None of these are updated in browser...</h2>
+        <ul>
+            <li>Controller</li>
+            <li>View file</li>
+            <li>Uncompiled asset jsasset.js</li>
+            <li>Compiled asset es6asset.es6 --> bundle.js</li>
+        </ul>
+        <h2>...when changed these ways:</h2>
+        <ul>
+            <li>Saving source files</li>
+            <li>Building without jar rebuild</li>
+            <li>Jar rebuild without deploy</li>
+        </ul>
+        <h2>Hmmm:</h2>
+        <ul>
+            <li>Wrong approach?</li>
+            <li>Wrong expectations?</li>
+            <li>Circumstance, e.g. a missing requirement?</li>
+            <li>Has worked before but is now broken?</li>
+            <li>Only works with certain file types?</li>
+            <li>Not with compilaton?</li>
+            <li>Something to do with <a href="https://github.com/enonic/doc-xp/pull/248#issuecomment-825543605" target="_blank">this issue</a>?</li>
+        </ul>
+        <script data-th-src="${jsassetUrl}"></script>
+        <script data-th-src="${bundleUrl}"></script>
+    </body>
+</html>

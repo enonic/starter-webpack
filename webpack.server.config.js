@@ -77,7 +77,7 @@ function addTypeScriptSupport(cfg) {
     }
   };
 
-  const entries = listEntries('ts', [
+  const entries = listEntries('{ts,es6}', [
     // Add additional files to the ignore list.
     // The following path will be transformed to 'src/main/resources/types.ts:
     'types.ts'
