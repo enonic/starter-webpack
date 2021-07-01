@@ -27,7 +27,7 @@
     "glob": "^7.1.7",
     "less": "^4.1.1",
     "less-loader": "^9.0.0",
-    "mini-css-extract-plugin": "^1.6.0",
+    "mini-css-extract-plugin": "^2.0.0",
     "node-sass": "^6.0.0",
     "postcss": "^8.3.0",
     "postcss-loader": "^5.3.0",
