@@ -22,7 +22,7 @@
     "browserslist-config-enonic": "^1.0.6",
     "cross-env": "^7.0.3",
     "css-loader": "^6.2.0",
-    "cssnano": "^5.0.6",
+    "cssnano": "^5.0.7",
     "file-loader": "^6.2.0",
     "glob": "^7.1.7",
     "less": "^4.1.1",
