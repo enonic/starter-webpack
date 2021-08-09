@@ -17,7 +17,8 @@ dependencies {
     include "com.enonic.xp:lib-event:${xpVersion}"
     include "com.enonic.xp:lib-content:${xpVersion}"
     include "com.enonic.xp:lib-portal:${xpVersion}"
-    include "com.enonic.lib:lib-thymeleaf:2.0.1"
+    include "com.enonic.lib:lib-mustache:2.0.0"
+    include "com.enonic.lib:lib-static:1.0.2"
     //include "com.enonic.xp:lib-auth:${xpVersion}"
     //include "com.enonic.xp:lib-context:${xpVersion}"
     //include "com.enonic.xp:lib-i18n:${xpVersion}"
@@ -31,13 +32,13 @@ dependencies {
 
 repositories {
     mavenLocal()
-    jcenter()
+    mavenCentral()
     xp.enonicRepo()
 }
 
 node {
     download = true
-    version = '14.15.0'
+    version = '16.0.0'
 }
 
 task npmInstallForce( type: NpmTask ) {
