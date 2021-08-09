@@ -10,6 +10,7 @@ const {
   prependExtensions
 } = require('./util/compose');
 const env = require('./util/env');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const isProd = env.prod;
 
@@ -41,7 +42,12 @@ const config = {
       minSize: 30000,
     },
   },
-  plugins: [],
+  plugins: [
+    new HtmlWebpackPlugin({
+      publicPath: '{{staticAssetUrl}}', // This placeholder be replaced with url for serving static assets
+      template: path.join(__dirname, '/src/main/resources/template/main.html'),
+    })
+  ],
   mode: env.type,
   devtool: isProd ? false : 'inline-source-map',
 }
@@ -108,7 +114,7 @@ const createDefaultCssLoaders = () => ([
 
 const createCssPlugin = () => (
   new MiniCssExtractPlugin({
-    filename: isProd ? './styles/bundle.[contenthash].css' : './styles/bundle.css',
+    filename: isProd ? 'styles/bundle.[contenthash].css' : 'styles/bundle.css',
     chunkFilename: isProd ? '[id].[contenthash].css' : '[id].css',
   })
 );
@@ -159,7 +165,7 @@ function addSassSupport(cfg) {
 function addFontSupport(cfg) {
   const rule = {
     test: /\.(eot|woff|woff2|ttf|svg)$/,
-    use: 'file-loader?name=fonts/[name].[ext]'
+    type: 'asset/resource',
   };
 
   return R.pipe(
