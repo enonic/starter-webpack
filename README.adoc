@@ -4,26 +4,6 @@ This starter kit will set up a basic template for your new Enonic app, with supp
 
 NOTE: See the official https://developer.enonic.com/start/starter-webpack[documentation] for a more detailed guide.
 
-== Compatibility
-
-[width="50%",options="header"]
-|===
-| Version | Min XP version
-|1.4.x
-|7.6.0
-|1.3.x
-|7.3.1
-|1.2.0
-|7.0.0
-|1.1.0
-|7.0.0
-|1.0.1
-|7.0.0
-
-|1.0.0
-|7.0.0
-|===
-
 == Introduction
 
 Once initiated, you'll have the bare minimum needed to create a new Enonic
