@@ -81,7 +81,7 @@ function addTypeScriptSupport(cfg) {
     // Add additional files to the ignore list.
     // The following path will be transformed to 'src/main/resources/types.ts:
     'types.ts'
-  ]);
+  ]).filter(entry => entry.indexOf('.d.ts') === -1);
 
   return R.pipe(
     setEntriesForPath(entries),
