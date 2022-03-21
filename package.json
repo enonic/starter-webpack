@@ -30,7 +30,7 @@
     "less-loader": "^10.2.0",
     "mini-css-extract-plugin": "^2.6.0",
     "node-sass": "^7.0.1",
-    "postcss": "^8.4.8",
+    "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
     "postcss-normalize": "^10.0.1",
     "ramda": "^0.28.0",
