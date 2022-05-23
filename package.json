@@ -19,7 +19,7 @@
     "@babel/register": "^7.17.7",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
-    "browserslist-config-enonic": "^1.0.6",
+    "browserslist-config-enonic": "^1.0.7",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.8",
