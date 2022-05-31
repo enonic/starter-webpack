@@ -31,6 +31,13 @@ const config = {
   resolve: {
     extensions: [],
   },
+  externals: {
+    // TS externals
+    '@enonic-types/lib-event': '/lib/xp/event',
+    // JS externals
+    '/lib/xp/event': '/lib/xp/event',
+    '/lib/enonic/static': '/lib/enonic/static',
+  },
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -73,7 +80,7 @@ function addTypeScriptSupport(cfg) {
     exclude: /node_modules/,
     loader: 'ts-loader',
     options: {
-      configFile: 'src/main/resources/tsconfig.server.json',
+      configFile: 'tsconfig.json',
     }
   };
 

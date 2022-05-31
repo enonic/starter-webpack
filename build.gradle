@@ -37,7 +37,7 @@ repositories {
 
 node {
     download = true
-    version = '16.0.0'
+    version = '17.4.0'
 }
 
 task npmInstallForce( type: NpmTask ) {
@@ -71,7 +71,7 @@ task serverWebpack( type: NodeTask, dependsOn: npmInstall ) {
 processResources {
     include '**/*'
     exclude '**/.gitkeep'
-    exclude '**/tsconfig.*.json'
+    exclude '**/tsconfig.json'
     exclude '**/*.es'
     exclude '**/*.es6'
     exclude '**/*.ts'
