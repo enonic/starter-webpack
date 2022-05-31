@@ -1,4 +1,4 @@
-import { listener } from '/lib/xp/event';
+import {listener} from '/lib/xp/event';
 
 const logEvent = (event) => {
   log.info(JSON.stringify(event));
@@ -17,4 +17,3 @@ export function init() {
     log.error(e);
   }
 }
- 

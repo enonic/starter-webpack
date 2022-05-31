@@ -1,14 +1,28 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "sourceMap": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "allowJs": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@enonic-types"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "/lib/xp/*": ["node_modules/@enonic-types/lib-*"],
+    }
   },
   "exclude": [
-    "./build/*"
+    "assets",
+    "*.js",
+    "./build"
   ]
 }
