@@ -10,17 +10,15 @@
     "build": "run-p -c build:*",
     "dist:client": "cross-env NODE_ENV=production webpack --config webpack.client.config.js --color",
     "dist:server": "cross-env NODE_ENV=production webpack --config webpack.server.config.js --color --hide-modules",
-    "dist": "run-p -c dist:*",
-    "build:tsf": "tsc ./src/main/resources/lib/watch/watch.ts",
-    "build:ts": "tsc --project ./src/main/resources/lib/watch/tsconfig.json --traceResolution"
+    "dist": "run-p -c dist:*"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/preset-env": "^7.18.9",
     "@babel/register": "^7.18.9",
-    "@enonic-types/global": "../xp/modules/lib/typescript",
-    "@enonic-types/lib-event": "../xp/modules/lib/lib-event",
+    "@enonic-types/global": "^0.1.0",
+    "@enonic-types/lib-event": "^0.1.0",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
     "browserslist-config-enonic": "^1.0.7",
@@ -34,6 +32,7 @@
     "less-loader": "^11.0.0",
     "mini-css-extract-plugin": "^2.6.1",
     "node-sass": "^7.0.1",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "postcss-loader": "^7.0.1",
     "postcss-normalize": "^10.0.1",
