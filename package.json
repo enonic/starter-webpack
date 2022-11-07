@@ -20,7 +20,7 @@
     "@enonic-types/global": "^7.11.0",
     "@enonic-types/lib-event": "^7.11.0",
     "autoprefixer": "^10.4.13",
-    "babel-loader": "^9.0.1",
+    "babel-loader": "^9.1.0",
     "browserslist-config-enonic": "^1.0.7",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
