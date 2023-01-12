@@ -1,4 +1,5 @@
-import {EnonicEvent, listener} from '@enonic-types/lib-event';
+import type {EnonicEvent} from '@enonic-types/lib-event';
+import {listener} from '/lib/xp/event';
 
 function logEvent({timestamp, data}: EnonicEvent): void {
     log.info(`${new Date(timestamp)}: ${JSON.stringify(data)}`);
