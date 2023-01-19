@@ -1,3 +1,4 @@
+// const {print} = require('q-i');
 const path = require('path');
 const glob = require('glob');
 const R = require('ramda');
@@ -21,7 +22,15 @@ const config = {
   context: path.join(__dirname, RESOURCES_PATH),
   entry: {},
   externals: [
-    /^\/lib\/(.+|\$)$/i
+    /^\/lib\/(.+|\$)$/i,
+    // {
+      // TS externals
+      // '@enonic-types/lib-event': '/lib/xp/event', // NOTE: I don't think this does anything
+      // JS externals
+      // NOTE: These are covered by the general regexp rule above
+      // '/lib/xp/event': '/lib/xp/event',
+      // '/lib/enonic/static': '/lib/enonic/static',
+    // }
   ],
   output: {
     path: path.join(__dirname, '/build/resources/main'),
@@ -31,14 +40,8 @@ const config = {
   resolve: {
     extensions: [],
   },
-  externals: {
-    // TS externals
-    '@enonic-types/lib-event': '/lib/xp/event',
-    // JS externals
-    '/lib/xp/event': '/lib/xp/event',
-    '/lib/enonic/static': '/lib/enonic/static',
-  },
   optimization: {
+    // minimize: false, // DEBUG
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -125,8 +128,8 @@ function addBabelSupport(cfg) {
 
   const entries = listEntries('{js,es,es6}', [
     // Add additional files to the ignore list.
-    // The following path will be transformed to 'src/main/resources/lib/observe/observe.es6':
-    'lib/observe/observe.es6'
+    // The following path will be transformed to 'src/main/resources/lib/observe/observe.ts':
+    'lib/observe/observe.ts'
   ]);
 
   return R.pipe(
@@ -136,11 +139,42 @@ function addBabelSupport(cfg) {
   )(cfg);
 }
 
+// SWC (instead of typescript and babel)
+function addSWC(cfg) {
+  const rule = {
+    test: /\.([ejt]s6?)?$/,
+    use: {
+      loader: 'swc-loader',
+      options: {
+        jsc: {
+            parser: {
+                syntax: 'typescript'
+            }
+        },
+        module: {
+          type: 'commonjs'
+        },
+        // sync: true, // Run syncronously to get correct error messages
+    }
+    },
+    exclude: /node_modules/,
+  }
+  const entries = listEntries('{ts,js,es,es6}',[])
+    .filter(entry => entry.indexOf('.d.ts') === -1);
+  return R.pipe(
+    setEntriesForPath(entries),
+    addRule(rule),
+    prependExtensions(['.ts', '.js', '.es', '.es6', '.json'])
+  )(cfg);
+}
+
 // ----------------------------------------------------------------------------
 // Result config
 // ----------------------------------------------------------------------------
 
 module.exports = R.pipe(
-  addBabelSupport,
-  addTypeScriptSupport
+  // addBabelSupport,
+  // addTypeScriptSupport,
+  addSWC,
 )(config);
+// print(module.exports, { maxItems: Infinity });

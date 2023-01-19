@@ -1,8 +1,28 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+
+    // Default:
+    //  ES3
+    // Allowed:
+    //  es3,es5,es6/es2015,es2016,es2017,es2018,es2019,es2020,es2021,es2022,esnext
+    // "target": "es5", // We're letting swc handle the transpilation
+    // "target": "esnext", // Turns out tree-shaking works regardless of target
+
+    // Default:
+    //  CommonJS if target is ES3 or ES5,
+    //  ES6/ES2015 otherwise.
+    // Allowed:
+    //  none, commonjs, amd, umd, system, es6/es2015, es2020, es2022, esnext, node16, nodenext
+    // "module": "commonjs",
+
+    // Default:
+    //  Classic if module is AMD, UMD, System or ES6/ES2015
+    //  Matches if module is node12 or nodenext
+    //  Node otherwise.
+    // Allowed:
+    //  classic, node, node16, nodenext
     "moduleResolution": "node",
+
     "sourceMap": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -10,14 +30,35 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
+    "outDir": "build/ts", // So it doesn't complain about overwriting files under ./src
     "strictNullChecks": true,
+
+    // By default all visible ”@types” packages are included in your compilation.
+    // Packages in node_modules/@types of any enclosing folder are considered visible.
+    // For example, that means packages within ./node_modules/@types/,
+    // ../node_modules/@types/, ../../node_modules/@types/, and so on.
+    // If typeRoots is specified, only packages under typeRoots will be included.
     "typeRoots": [
       "node_modules/@types",
       "node_modules/@enonic-types"
     ],
+
+    // By default all visible ”@types” packages are included in your compilation.
+    // Packages in node_modules/@types of any enclosing folder are considered visible.
+    // For example, that means packages within ./node_modules/@types/,
+    // ../node_modules/@types/, ../../node_modules/@types/, and so on.
+    // If types is specified, only packages listed will be included in the global scope.
+    // This feature differs from typeRoots in that it is about specifying only the exact
+    // types you want included, whereas typeRoots supports saying you want particular folders.
+    // "types": [
+      // "@enonic-types/global", // No point, already added via typeRoots
+      // "@enonic-types/lib-event" // No point, since it doesn't affect global scope
+    // ],
+
     "baseUrl": "./",
     "paths": {
       "/lib/xp/*": ["node_modules/@enonic-types/lib-*"],
+      "/lib/*": ["src/main/resources/lib/*"], // So one can import local libs with absolute path (same as Enonic does during runtime).
     }
   },
   "exclude": [
