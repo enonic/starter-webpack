@@ -1,12 +1,32 @@
-{
+{ // https://www.typescriptlang.org/tsconfig
   "compilerOptions": {
 
-    // Default:
-    //  ES3
-    // Allowed:
-    //  es3,es5,es6/es2015,es2016,es2017,es2018,es2019,es2020,es2021,es2022,esnext
-    // "target": "es5", // We're letting swc handle the transpilation
-    // "target": "esnext", // Turns out tree-shaking works regardless of target
+    //─────────────────────────────────────────────────────────────────────
+    // Type Checking
+    //─────────────────────────────────────────────────────────────────────
+    // Ensures that your files are parsed in the ECMAScript strict mode, and emit “use strict” for each source file.
+    // ECMAScript strict mode was introduced in ES5 and provides behavior tweaks to the runtime of the JavaScript engine to improve performance, and makes a set of errors throw instead of silently ignoring them.
+    "alwaysStrict": true,
+
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+
+    // The strict flag enables a wide range of type checking behavior that results in stronger guarantees of program correctness.
+    // Turning this on is equivalent to enabling all of the strict mode family options, which are outlined below.
+    // You can then turn off individual strict mode family checks as needed.
+    // Future versions of TypeScript may introduce additional stricter checking under this flag, so upgrades of TypeScript might result in new type errors in your program.
+    // When appropriate and possible, a corresponding flag will be added to disable that behavior.
+    "strict": true,
+
+    // When strictNullChecks is false, null and undefined are effectively ignored by the language. This can lead to unexpected errors at runtime.
+    // When strictNullChecks is true, null and undefined have their own distinct types and you’ll get a type error if you try to use them where a concrete value is expected.
+    "strictNullChecks": true,
+
+    //─────────────────────────────────────────────────────────────────────
+    // Modules
+    //─────────────────────────────────────────────────────────────────────
+    "baseUrl": "./",
 
     // Default:
     //  CommonJS if target is ES3 or ES5,
@@ -14,6 +34,7 @@
     // Allowed:
     //  none, commonjs, amd, umd, system, es6/es2015, es2020, es2022, esnext, node16, nodenext
     // "module": "commonjs",
+    "module": "es6",
 
     // Default:
     //  Classic if module is AMD, UMD, System or ES6/ES2015
@@ -23,15 +44,10 @@
     //  classic, node, node16, nodenext
     "moduleResolution": "node",
 
-    "sourceMap": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "outDir": "build/ts", // So it doesn't complain about overwriting files under ./src
-    "strictNullChecks": true,
+    "paths": {
+      "/lib/xp/*": ["node_modules/@enonic-types/lib-*"],
+      "/lib/*": ["src/main/resources/lib/*"], // So one can import local libs with absolute path (same as Enonic does during runtime).
+    },
 
     // By default all visible ”@types” packages are included in your compilation.
     // Packages in node_modules/@types of any enclosing folder are considered visible.
@@ -55,11 +71,54 @@
       // "@enonic-types/lib-event" // No point, since it doesn't affect global scope
     // ],
 
-    "baseUrl": "./",
-    "paths": {
-      "/lib/xp/*": ["node_modules/@enonic-types/lib-*"],
-      "/lib/*": ["src/main/resources/lib/*"], // So one can import local libs with absolute path (same as Enonic does during runtime).
-    }
+    //─────────────────────────────────────────────────────────────────────
+    // Emit
+    //─────────────────────────────────────────────────────────────────────
+    "outDir": "build/ts", // So it doesn't complain about overwriting files under ./src
+    "sourceMap": false,
+
+    //─────────────────────────────────────────────────────────────────────
+    // JavaScript Support
+    //─────────────────────────────────────────────────────────────────────
+    // Allow JavaScript files to be imported inside your project, instead of just .ts and .tsx files.
+    // This flag can be used as a way to incrementally add TypeScript files into JS projects by allowing the .ts and .tsx files to live along-side existing JavaScript files.
+    // "allowJs": true,
+
+    //─────────────────────────────────────────────────────────────────────
+    // Interop Constraints
+    //─────────────────────────────────────────────────────────────────────
+    // When set to true, allowSyntheticDefaultImports allows you to write an import like:
+    //   import React from "react";
+    // instead of:
+    //   import * as React from "react";
+    "allowSyntheticDefaultImports": true,
+
+    // By default (with esModuleInterop false or not set) TypeScript treats CommonJS/AMD/UMD modules similar to ES6 modules.
+    //
+    // In doing this, there are two parts in particular which turned out to be flawed assumptions:
+    // * a namespace import like import * as moment from "moment" acts the same as const moment = require("moment")
+    // * a default import like import moment from "moment" acts the same as const moment = require("moment").default
+    //
+    // This mis-match causes these two issues:
+    // 1. the ES6 modules spec states that a namespace import (import * as x) can only be an object,
+    //    by having TypeScript treating it the same as = require("x") then TypeScript allowed for the import to be treated as a function and be callable.
+    //    That’s not valid according to the spec.
+    // 2. while accurate to the ES6 modules spec, most libraries with CommonJS/AMD/UMD modules didn’t conform as strictly as TypeScript’s implementation.
+    //
+    // Turning on esModuleInterop will fix both of these problems in the code transpiled by TypeScript. The first changes the behavior in the compiler, the second is fixed by two new helper functions which provide a shim to ensure compatibility in the emitted JavaScript:
+    "esModuleInterop": true,
+
+    //─────────────────────────────────────────────────────────────────────
+    // Language and Environment
+    //─────────────────────────────────────────────────────────────────────
+    // Default:
+    //  ES3
+    // Allowed:
+    //  es3,es5,es6/es2015,es2016,es2017,es2018,es2019,es2020,es2021,es2022,esnext
+    // "target": "es5", // We're letting swc handle the transpilation
+    // "target": "es6",
+    // "target": "es2016",
+    "target": "esnext", // Seems like tree-shaking (in node_modules) works regardless of target
   },
   "exclude": [
     "assets",
