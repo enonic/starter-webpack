@@ -2,7 +2,7 @@
 
 This starter kit will set up a basic template for your new Enonic app, with support for the Webpack.
 
-NOTE: See the official https://developer.enonic.com/start/starter-webpack[documentation] for a more detailed guide.
+NOTE: See the official https://developer.enonic.com/docs/webpack-starter[documentation] for a more detailed guide.
 
 == Introduction
 
