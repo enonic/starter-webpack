@@ -24,7 +24,7 @@
     "browserslist-config-enonic": "^1.0.7",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
-    "cssnano": "^5.1.15",
+    "cssnano": "^6.0.0",
     "file-loader": "^6.2.0",
     "glob": "^9.3.2",
     "html-webpack-plugin": "^5.5.0",
