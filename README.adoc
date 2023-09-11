@@ -20,12 +20,12 @@ The project will support:
 
 == Create a project
 
-To setup a project locally, simply run the following command:
+To set up a project locally, simply run the following command:
 
 ```bash
-$ enonic project create
+$ enonic project create -r starter-webpack
 ```
-Complete the Wizard and make sure you choose *Webpack starter* from the list of starters
+Answer the Wizard questions to complete creation of the project.
 
 ```bash
 $ cd <project-folder>
