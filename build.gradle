@@ -75,6 +75,10 @@ tasks.register( 'serverWebpack', NodeTask ) {
     script = file( 'node_modules/webpack-cli/bin/cli.js' )
 }
 
+tasks.register('dev', Exec) {
+    commandLine './gradlew', 'deploy', '-t'
+}
+
 processResources {
     include '**/*'
     exclude '**/.gitkeep'
