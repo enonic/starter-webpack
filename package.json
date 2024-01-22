@@ -17,7 +17,7 @@
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/preset-env": "^7.23.8",
     "@babel/register": "^7.23.7",
-    "@enonic-types/global": "^7.13.5",
+    "@enonic-types/global": "^7.14.0",
     "@enonic-types/lib-event": "^7.14.0",
     "autoprefixer": "^10.4.16",
     "babel-loader": "^9.1.3",
