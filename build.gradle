@@ -46,16 +46,16 @@ node {
     version = '18.17.1'
 }
 
-tasks.register( 'npmInstallForce', NpmTask ) {
+tasks.register('npmInstallForce', NpmTask) {
     description = 'Update all project node dependencies'
     args = ['install', '--force']
 }
 
-tasks.register( 'cleanNode', Delete ) {
+tasks.register('cleanNode', Delete) {
     delete 'node_modules'
 }
 
-tasks.register( 'clientWebpack', NodeTask ) {
+tasks.register('clientWebpack', NodeTask) {
     dependsOn npmInstall
     environment = [ 'NODE_ENV': nodeEnvironment() ]
     args = [ '--config', 'webpack.client.config.js', '--color' ]
@@ -65,7 +65,7 @@ tasks.register( 'clientWebpack', NodeTask ) {
     script = file( 'node_modules/webpack-cli/bin/cli.js' )
 }
 
-tasks.register( 'serverWebpack', NodeTask ) {
+tasks.register('serverWebpack', NodeTask) {
     dependsOn npmInstall
     environment = [ 'NODE_ENV': nodeEnvironment() ]
     args = [ '--config', 'webpack.server.config.js', '--color' ]
@@ -76,7 +76,11 @@ tasks.register( 'serverWebpack', NodeTask ) {
 }
 
 tasks.register('dev', Exec) {
-    commandLine './gradlew', 'deploy', '-t'
+    if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+        commandLine 'gradlew.bat', 'deploy', '-t'
+    } else {
+        commandLine './gradlew', 'deploy', '-t'
+    }
 }
 
 processResources {
