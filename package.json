@@ -19,7 +19,7 @@
     "@babel/register": "^7.23.7",
     "@enonic-types/global": "^7.14.0",
     "@enonic-types/lib-event": "^7.14.0",
-    "autoprefixer": "^10.4.18",
+    "autoprefixer": "^10.4.19",
     "babel-loader": "^9.1.3",
     "browserslist-config-enonic": "^1.0.8",
     "cross-env": "^7.0.3",
