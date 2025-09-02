@@ -18,7 +18,7 @@
     "@babel/preset-env": "^7.28.3",
     "@babel/register": "^7.28.3",
     "@enonic-types/global": "^7.15.3",
-    "@enonic-types/lib-event": "^7.15.3",
+    "@enonic-types/lib-event": "^7.15.4",
     "autoprefixer": "^10.4.21",
     "babel-loader": "^10.0.0",
     "browserslist-config-enonic": "^1.0.8",
