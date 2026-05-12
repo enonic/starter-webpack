@@ -37,7 +37,7 @@
     "postcss-loader": "^8.2.1",
     "postcss-normalize": "^13.0.1",
     "ramda": "^0.32.0",
-    "sass-loader": "^16.0.7",
+    "sass-loader": "^16.0.8",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.5.0",
     "ts-loader": "^9.5.7",
